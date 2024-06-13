@@ -1,0 +1,37 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    <div class="container">
+        {% include 'nave.html' %}
+
+            <div class="row mt-4">
+                <h3>Lista de Posts</h3>
+                
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>E-Mail</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <body>
+                            {% for linha in posts %}
+                            <tr>
+                                <td>{{linha.msg_resumo()}}</td>
+                                <td>{{linha.user.nome}}</td>
+                                <td><a href="{{url_for('PostComentario', id=linha.id)}}"><img src="{{url_for('static', filename='img/seta.png')}}" width="30" height="30"></a></td>
+                                
+                            </tr>
+                            {% endfor%}
+                        </body>
+                    </table>
+                </div>
+
+
+            </div>
+            <img src="https://media.tenor.com/k8ouEsLbzL4AAAAM/happy-emoji.gif">
+
+    </div>
+{% endblock %}

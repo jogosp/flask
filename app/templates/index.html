@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<div class="container">
+
+    <div>
+        {% include 'nave.html' %}
+
+        {% if current_user.is_authenticated %}
+        <span class="btn btn-success"> {{current_user.nome}} {{current_user.sobrenome}} </span>
+        <a href="{{url_for('logout')}}" class="btn btn-danger">Sair</a>
+        {% else %}
+
+        <form action="" method="post" class="row mt-4 p-4 round border shadow">
+
+            <h3>Faça seu login</h3>
+            {{form.csrf_token}}
+
+
+
+
+            {{form.email.label()}}
+            {{form.email(class="form-control")}}
+
+            {{form.senha.label()}}
+            {{form.senha(class="form-control")}}
+
+
+            <hr>
+            {{form.btnSubmit(class="btn btn-primary col-12 mt-3")}}
+
+            <div class="col-12 mt-4">Não tem cadastro?<a href="{{url_for('cadastro')}}"> Fassa o seu cadastro</a></div>
+
+
+        </form>
+
+
+        {% endif %}
+        <hr>
+        <img src="{{url_for('static', filename='img/escolas.png')}}" width="25%" height="25%">
+    </div>
+</div>
+{% endblock %}
